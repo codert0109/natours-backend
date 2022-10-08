@@ -5,6 +5,7 @@ const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const Email = require('../utils/email');
+const { CLIENT_BASE_URL } = require('../config/constants');
 
 const signJwtToken = id =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -44,9 +45,7 @@ exports.signup = catchAsync(async (req, res) => {
     role,
   });
 
-  // TODO: change the redirect url
-  // currently redirects to the server -> instead should be the frontend
-  const url = `${req.protocol}://${req.get('host')}/me`;
+  const url = `${CLIENT_BASE_URL}/me`;
   await new Email(newUser, url).sendWelcome();
   createSendToken(newUser, 201, req, res);
 });
