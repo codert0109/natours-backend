@@ -7,8 +7,11 @@
     "start": "node server.js",
     "start:dev": "nodemon server.js",
     "start:prod": "SET NODE_ENV=production&&nodemon server.js",
-    "debug": "ndb server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "debug": "ndb server.js"
+  },
+  "engines": {
+    "node": "^16",
+    "npm": "^8"
   },
   "author": "Arun Bohra",
   "license": "ISC",
